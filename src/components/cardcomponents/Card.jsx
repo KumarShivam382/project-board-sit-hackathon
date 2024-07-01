@@ -1,30 +1,31 @@
 import React from "react";
-
+import PropTypes from "prop-types";
+import FrameworkSpan from "./CardFrameworks";
 import CardOwners from "./CardOwners";
-import CardFrameworks from "./CardFrameworks";
 
 export default function Card({ title, owners, frameworks, rating, reviews }) {
   return (
-    <div className="mb-5">
-      <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <div className="">
-          <div className="m-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-2xl dark:text-white">
-            {title}
-          </div>
-          <div className="flex justify-center">
-            <div className="mr-1">Owners:</div>
-            <div>
-              <CardOwners owners={owners} />
+    <div className="mb-5 h-full flex flex-col">
+      <div className="flex-grow bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="p-4 flex flex-col justify-between h-full">
+          <div>
+            <div className="text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-2xl dark:text-white">
+              {title}
+            </div>
+            <div className="flex justify-center my-4">
+              <div className="mr-1">Owners:</div>
+              <div>
+                <CardOwners owners={owners} />
+              </div>
+            </div>
+            <div className="flex flex-wrap m-3 p-2 space-x-2">
+              {frameworks.map((framework, index) => (
+                <FrameworkSpan key={index} FrameworkTitle={framework} />
+              ))}
             </div>
           </div>
-          <div className="flex flex-wrap m-3 p-2 space-x-2">
-            {frameworks.map((framework, index) => (
-              <CardFrameworks key={index} FrameworkTitle={framework} />
-            ))}
-          </div>
-
-          <div className="flex items-center justify-between mt-3 mb-5">
-            <span className="flex items-center text-black-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
+          <div className="flex items-center justify-between mt-3">
+            <span className="flex items-center text-black-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
               <h6 className="mr-2 font-semibold text-md">{rating}</h6>
               <svg
                 className="w-4 h-4 text-yellow-300"
@@ -46,3 +47,11 @@ export default function Card({ title, owners, frameworks, rating, reviews }) {
     </div>
   );
 }
+
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  owners: PropTypes.arrayOf(PropTypes.string).isRequired,
+  frameworks: PropTypes.arrayOf(PropTypes.string).isRequired,
+  rating: PropTypes.number.isRequired,
+  reviews: PropTypes.number.isRequired,
+};

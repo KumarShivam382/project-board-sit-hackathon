@@ -1,10 +1,26 @@
 import React, { useState } from "react";
 
-function SearchDropdown() {
+const frameworks = [
+  "React",
+  "Vue",
+  "Angular",
+  "Svelte",
+  "Next",
+  "Gatsby",
+  "Nuxt",
+  "Ember",
+  "Backbone",
+];
+
+function SearchDropdown({ selectedFrameworks, onSelect }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const handleSelect = (framework) => {
+    onSelect(framework);
   };
 
   return (
@@ -17,7 +33,7 @@ function SearchDropdown() {
       >
         Select Framework
         <svg
-          className={`w-2.5 h-2.5 ms-3 transform transition-transform ${
+          className={`w-2.5 h-2.5 ml-3 transform transition-transform ${
             isOpen ? "rotate-180" : "rotate-0"
           }`}
           aria-hidden="true"
@@ -45,134 +61,25 @@ function SearchDropdown() {
           className="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
           aria-labelledby="dropdownCheckboxButton"
         >
-          <li>
-            <div className="flex items-center">
-              <input
-                id="checkbox-item-1"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label
-                htmlFor="checkbox-item-1"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Default checkbox
-              </label>
-            </div>
-          </li>
-          <li>
-            <div className="flex items-center">
-              <input
-                id="checkbox-item-1"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label
-                htmlFor="checkbox-item-1"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Default checkbox
-              </label>
-            </div>
-          </li>
-          <li>
-            <div className="flex items-center">
-              <input
-                id="checkbox-item-1"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label
-                htmlFor="checkbox-item-1"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Default checkbox
-              </label>
-            </div>
-          </li>
-          <li>
-            <div className="flex items-center">
-              <input
-                id="checkbox-item-1"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label
-                htmlFor="checkbox-item-1"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Default checkbox
-              </label>
-            </div>
-          </li>
-          <li>
-            <div className="flex items-center">
-              <input
-                id="checkbox-item-1"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label
-                htmlFor="checkbox-item-1"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Default checkbox
-              </label>
-            </div>
-          </li>
-          <li>
-            <div className="flex items-center">
-              <input
-                id="checkbox-item-1"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label
-                htmlFor="checkbox-item-1"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Default checkbox
-              </label>
-            </div>
-          </li>
-          <li>
-            <div className="flex items-center">
-              <input
-                id="checkbox-item-1"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label
-                htmlFor="checkbox-item-1"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Default checkbox
-              </label>
-            </div>
-          </li>
-          <li>
-            <div className="flex items-center">
-              <input
-                id="checkbox-item-3"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              />
-              <label
-                htmlFor="checkbox-item-3"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Default checkbox
-              </label>
-            </div>
-          </li>
+          {frameworks.map((framework) => (
+            <li key={framework}>
+              <div className="flex items-center">
+                <input
+                  id={`checkbox-${framework}`}
+                  type="checkbox"
+                  checked={selectedFrameworks.includes(framework)}
+                  onChange={() => handleSelect(framework)}
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label
+                  htmlFor={`checkbox-${framework}`}
+                  className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  {framework}
+                </label>
+              </div>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

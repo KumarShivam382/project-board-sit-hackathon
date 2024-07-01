@@ -78,15 +78,60 @@ const testData = [
 ];
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedFrameworks, setSelectedFrameworks] = useState([]);
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    if (!selectedFrameworks.includes(query) && query.trim() !== "") {
+      setSelectedFrameworks([...selectedFrameworks, query]);
+    }
+  };
+
+  const handleDropdownSelect = (framework) => {
+    if (!selectedFrameworks.includes(framework)) {
+      setSelectedFrameworks([...selectedFrameworks, framework]);
+    }
+  };
+
+  const handleRemoveFramework = (frameworkToRemove) => {
+    setSelectedFrameworks(
+      selectedFrameworks.filter((framework) => framework !== frameworkToRemove)
+    );
+  };
+
   return (
     <div>
       <div className="container mx-auto px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10">
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <div className="mb-4 sm:mb-0">
-            <SearchBar />
+            <SearchBar onSearch={handleSearch} />
           </div>
           <div className="mb-4 sm:mb-0">
-            <SearchDropdown />
+            <SearchDropdown
+              selectedFrameworks={selectedFrameworks}
+              onSelect={handleDropdownSelect}
+            />
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <h3 className="text-lg font-bold">Selected Frameworks:</h3>
+          <div className="flex flex-wrap">
+            {selectedFrameworks.map((framework, index) => (
+              <div
+                key={index}
+                className="flex items-center m-1 bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800"
+              >
+                <span>{framework}</span>
+                <button
+                  className="ml-2 text-black-600 hover:text-red-800"
+                  onClick={() => handleRemoveFramework(framework)}
+                >
+                  &times;
+                </button>
+              </div>
+            ))}
           </div>
         </div>
 
