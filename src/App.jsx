@@ -100,6 +100,10 @@ function App() {
     );
   };
 
+  const filteredData = testData.filter((test) =>
+    selectedFrameworks.every((framework) => test.Frameworks.includes(framework))
+  );
+
   return (
     <div>
       <div className="container mx-auto px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10">
@@ -136,7 +140,7 @@ function App() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 justify-center mt-4">
-          {testData.map((test, index) => (
+          {filteredData.map((test, index) => (
             <Card
               key={index}
               title={test.title}
